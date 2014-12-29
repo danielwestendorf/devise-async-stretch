@@ -38,7 +38,6 @@ module Devise
         if Devise::Async::Stretch.enabled
           stretch = Devise::Async::Stretch.intermediate_stretch
 
-          self.stretch_mark = Devise::Async::Stretch.intermediate_stretch
           @password = password # Hang on to the password for the after_save
 
           bcrypt(password, stretch)

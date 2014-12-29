@@ -23,11 +23,14 @@ module Devise
             assert_not_empty @user.reload.encrypted_password
           end
 
-          test "intermidiate encrypted_password gets set with a stretch_mark" do
+          test "intermidiate encrypted_password gets set" do
+            user = User.new(email: 'ed@example.com', password: 'password1')
+            encrypted_password = user.encrypted_password
+            assert_not_empty encrypted_password
 
-            user = User.create(email: 'ed@example.com', password: 'password1')
-            assert_not_empty user.reload.encrypted_password
-            assert_equal Devise::Async::Stretch.intermediate_stretch, user.reload.stretch_mark
+            user.save
+
+            refute_equal encrypted_password, user.reload.encrypted_password
           end
 
         end
