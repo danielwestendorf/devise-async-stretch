@@ -19,12 +19,6 @@ module Devise
           inject_into_file(path, ", :stretchable", :after => ":database_authenticatable") if File.exists?(path)
         end
 
-        def add_intermediate_stretch_support
-          # Simply add the migration and migrate the db
-          generate "migration", "AddStretchMarkTo#{name} stretch_mark:integer"
-          rake "db:migrate"
-        end
-
       end
     end
   end

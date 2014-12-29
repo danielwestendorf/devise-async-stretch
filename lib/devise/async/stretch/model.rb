@@ -4,6 +4,7 @@ module Devise
       extend ActiveSupport::Concern
 
       included do
+        # Enhance the stretches!
         after_save :enqueue_stretch_worker
       end
 
@@ -15,6 +16,7 @@ module Devise
         end
       end
 
+      # Our own bcrypt mehtod which supports arbitrary stretches
       def bcrypt(password, stretches=nil)
         stretches ||= self.class.stretches
         ::BCrypt::Password.create("#{password}#{self.class.pepper}", cost: stretches).to_s
@@ -23,7 +25,7 @@ module Devise
       protected
 
       def enqueue_stretch_worker
-        Devise::Async::Stretch::Worker.enqueue(self.class, id, @password) unless @password.nil?
+        Devise::Async::Stretch::Worker.enqueue(self.class, id, @password) if !@password.nil? && Devise::Async::Stretch.enabled
         @password = nil
       end
 
@@ -37,11 +39,11 @@ module Devise
           stretch = Devise::Async::Stretch.intermediate_stretch
 
           self.stretch_mark = Devise::Async::Stretch.intermediate_stretch
-          @password = password
+          @password = password # Hang on to the password for the after_save
 
           bcrypt(password, stretch)
         else
-          Devise.bcrypt(self.class, password)
+          super
         end
       end
 

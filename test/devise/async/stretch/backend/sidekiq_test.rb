@@ -28,13 +28,11 @@ module Devise
             ::Sidekiq::Testing.inline!
 
             user = User.new(email: 'ed@example.com', password: 'password1')
-            stretch_mark = user.stretch_mark
-            refute_nil stretch_mark
+            encrypted_password = user.encrypted_password
 
             user.save # Should trigger the Sidekiq job
 
-            # Sidekiq.new.perform("User", user.id, 'password1')
-            refute_equal stretch_mark, user.reload.stretch_mark
+            refute_equal encrypted_password, user.reload.encrypted_password
           end
 
         end
