@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - "2.2.0"
+script:
+  - bundle exec rake test
+deploy:
+  provider: rubygems
+  api_key:
+    secure: F1Drh/pkUEDBvn0l6ZpFJeCeJk0FGReu98Ce3PMiIHjHngGsC3xDOTbkQ7+TUQHlfc0g3Hpc4pYmHxL3w/6TJwbx9csRX0Np4yaNfJZJdHR8uzAi7mpY32APXeLCJkV5En3h1B/G1V3qQ+AhH0Ez6nlOiSEhocJ+MVq9jFXagM4=

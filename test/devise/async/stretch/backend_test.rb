@@ -5,6 +5,10 @@ module Devise
     module Stretch
       class BackendTest < ActiveSupport::TestCase
 
+        setup do
+          Devise::Async::Stretch.backend = :sidekiq
+        end
+
         test "sidekiq" do
           assert_equal Backend::Sidekiq, Backend.for(:sidekiq)
         end

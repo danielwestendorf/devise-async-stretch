@@ -5,7 +5,7 @@ module Devise
         class Sidekiq < Base
           include ::Sidekiq::Worker
 
-          sidekiq_options :queue => Devise::Async::Stretch.queue
+          sidekiq_options queue: Devise::Async::Stretch.queue
 
           def self.enqueue(klass, id, password)
             perform_async(klass, id, password)

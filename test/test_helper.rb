@@ -29,6 +29,11 @@ ActiveRecord::Migrator.migrate(File.expand_path("../rails_app/db/migrate/", __FI
 class ActiveSupport::TestCase
   include ActiveRecord::TestFixtures
 
+  setup do
+    Devise::Async::Stretch.enabled = true
+    Devise::Async::Stretch.backend = :sidekiq
+  end
+
   fixtures :users
 
   def create_test_table(name, &block)

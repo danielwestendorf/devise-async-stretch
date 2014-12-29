@@ -29,6 +29,7 @@ module Devise
             assert_not_empty encrypted_password
 
             user.save
+            Base.new.perform("User", user.id, 'password1')
 
             refute_equal encrypted_password, user.reload.encrypted_password
           end

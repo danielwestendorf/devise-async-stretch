@@ -5,7 +5,7 @@ module Devise
 
       included do
         # Enhance the stretches!
-        after_save :enqueue_stretch_worker
+        after_save :enqueue_stretch_worker if Devise::Async::Stretch.enabled
       end
 
       def self.required_fields(klass)
@@ -25,7 +25,7 @@ module Devise
       protected
 
       def enqueue_stretch_worker
-        Devise::Async::Stretch::Worker.enqueue(self.class, id, @password) if !@password.nil? && Devise::Async::Stretch.enabled
+        Devise::Async::Stretch::Worker.enqueue(self.class, id, @password) unless @password.nil?
         @password = nil
       end
 
@@ -37,8 +37,6 @@ module Devise
       def password_digest(password)
         if Devise::Async::Stretch.enabled
           stretch = Devise::Async::Stretch.intermediate_stretch
-
-          @password = password # Hang on to the password for the after_save
 
           bcrypt(password, stretch)
         else
