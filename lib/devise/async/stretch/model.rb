@@ -1,10 +1,10 @@
 module Devise
   module Models
-    module Stretch
+    module Stretchable
       extend ActiveSupport::Concern
 
       included do
-
+        after_save :enqueue_stretch_worker
       end
 
       def self.required_fields(klass)
@@ -22,6 +22,11 @@ module Devise
 
       protected
 
+      def enqueue_stretch_worker
+        Devise::Async::Stretch::Worker.enqueue(self.class, id, @password) unless @password.nil?
+        @password = nil
+      end
+
       # Digests the password using bcrypt. Custom encryption should override
       # this method to apply their own algorithm.
       #
@@ -29,9 +34,12 @@ module Devise
       # of other encryption engines.
       def password_digest(password)
         if Devise::Async::Stretch.enabled
-          Devise.bcrypt(self.class, password, 1)
+          stretch = Devise::Async::Stretch.intermediate_stretch
 
-          Devise::Async::Stretch::Worker.enqueue(self.klass, this.id, password)
+          self.stretch_mark = Devise::Async::Stretch.intermediate_stretch
+          @password = password
+
+          bcrypt(password, stretch)
         else
           Devise.bcrypt(self.class, password)
         end

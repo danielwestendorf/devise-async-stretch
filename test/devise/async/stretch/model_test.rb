@@ -16,12 +16,12 @@ class ModelTest < ActiveSupport::TestCase
 
   test "required_fields doesn't include encrypted_password when enabled" do
     Devise::Async::Stretch.enabled = true
-    assert_equal [:email], Devise::Models::Stretch.required_fields(User)
+    assert_equal [:email], Devise::Models::Stretchable.required_fields(User)
   end
 
   test "required_fields includes encrypted_password when disabled" do
     Devise::Async::Stretch.enabled = false
-    assert_equal [:encrypted_password, :email], Devise::Models::Stretch.required_fields(User)
+    assert_equal [:encrypted_password, :email], Devise::Models::Stretchable.required_fields(User)
   end
 
 end

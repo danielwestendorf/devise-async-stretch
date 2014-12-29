@@ -13,9 +13,9 @@ module Devise
           # compatibility among diferent ORMs.
            def perform(klass, id, password)
             resource = klass.constantize.to_adapter.get!(id)
-            encrypted_password = resource.bcrypt(password)
+            encrypted_password = resource.bcrypt(password, resource.class.stretches)
 
-            resource.update(encrypted_password: encrypted_password)
+            resource.update(encrypted_password: encrypted_password, stretch_mark: resource.class.stretches)
           end
 
         end

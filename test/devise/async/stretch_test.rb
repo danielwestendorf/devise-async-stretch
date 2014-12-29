@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class StretchTest < ActiveSupport::TestCase
-  settings = [:backend=, :queue=, :enabled=]
+  settings = [:backend=, :queue=, :enabled=, :intermediate_stretch=]
 
   test "configureable settings via setter" do
     assert_nothing_raised NoMethodError do

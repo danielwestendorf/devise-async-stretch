@@ -27,6 +27,11 @@ module Devise
       mattr_accessor :enabled
       @@enabled = true
 
+      # Defines the value for stretching at initial user creation
+      mattr_accessor :intermediate_stretch
+      @@intermediate_stretch = 1
+
+
       # Allow configuring Devise::Async::Stretch with a block
       #
       # Example:
@@ -44,4 +49,4 @@ module Devise
 end
 
 # Register devise-async model in Devise
-::Devise.add_module(:stretch, :model => 'devise/async/stretch/model')
+::Devise.add_module(:stretchable, :model => 'devise/async/stretch/model')
