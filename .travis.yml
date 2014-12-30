@@ -7,3 +7,6 @@ deploy:
   provider: rubygems
   api_key:
     secure: F1Drh/pkUEDBvn0l6ZpFJeCeJk0FGReu98Ce3PMiIHjHngGsC3xDOTbkQ7+TUQHlfc0g3Hpc4pYmHxL3w/6TJwbx9csRX0Np4yaNfJZJdHR8uzAi7mpY32APXeLCJkV5En3h1B/G1V3qQ+AhH0Ez6nlOiSEhocJ+MVq9jFXagM4=
+addons:
+  code_climate:
+    repo_token: e1fe9dfcd049fee242692f3589fef93579fe012c3874f31ae2afc82013a194b0
