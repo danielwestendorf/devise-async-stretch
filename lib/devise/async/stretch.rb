@@ -1,3 +1,9 @@
+# Copyright (c) 2014 Daniel Westendorf
+#
+# Much credit and thanks goes to Marcelo Silveira's wonderfull devise-async gem
+# https://github.com/mhfs/devise-async for inspiration on the backend
+# queuing support.
+
 require "active_support/dependencies"
 require "devise"
 require "devise/async/stretch/version"
