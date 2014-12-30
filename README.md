@@ -1,26 +1,8 @@
 # Devise::Async::Stretch
 
-TODO: Write a gem description
+Move password stretching into a background job for fast user creation but while maintaining difficult to crack storage.
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'devise-async-stretch'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install devise-async-stretch
-
-## Usage
-
-TODO: Write usage instructions here
+Who, why, and how? See the [website](http://devise-async-stretch.onsimplybuilt.com/).
 
 ## Contributing
 
