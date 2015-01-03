@@ -4,7 +4,7 @@ module Devise
       class Worker
 
         def self.enqueue(klass, id, password)
-          backend_klass.enqueue(klass, id, password)
+          backend_klass.enqueue_job(klass, id, password)
         end
 
         private

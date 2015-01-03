@@ -7,7 +7,7 @@ module Devise
 
           sidekiq_options queue: Devise::Async::Stretch.queue
 
-          def self.enqueue(klass, id, password)
+          def self.enqueue_job(klass, id, password)
             perform_async(klass, id, password)
           end
         end

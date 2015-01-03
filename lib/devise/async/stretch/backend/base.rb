@@ -3,7 +3,7 @@ module Devise
     module Stretch
       module Backend
         class Base
-          def self.enqueue(*args)
+          def self.enqueue_job(*args)
             raise NotImplementedError, "Any Devise::Async::Stretch::Backend subclass should implement `self.enqueue`."
           end
 

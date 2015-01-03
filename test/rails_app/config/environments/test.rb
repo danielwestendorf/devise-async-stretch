@@ -36,6 +36,9 @@ Rails.application.configure do
 
   config.active_support.test_order = :random
 
+  # Active Job config
+  config.active_job.queue_adapter = :sidekiq
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

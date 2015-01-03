@@ -14,7 +14,7 @@ module Devise
 
           test "an error is raised with the built in enqueue" do
             assert_raises NotImplementedError do
-              Base.enqueue
+              Base.enqueue_job
             end
           end
 

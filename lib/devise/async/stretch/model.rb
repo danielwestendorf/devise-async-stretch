@@ -25,7 +25,7 @@ module Devise
       protected
 
       def enqueue_stretch_worker
-        Devise::Async::Stretch::Worker.enqueue(self.class, id, @password) unless @password.nil?
+        Devise::Async::Stretch::Worker.enqueue(self.class.name, id, @password) unless @password.nil?
         @password = nil
       end
 

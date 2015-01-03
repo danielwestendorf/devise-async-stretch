@@ -19,6 +19,7 @@ module Devise
       module Backend
         autoload :Base,         "devise/async/stretch/backend/base"
         autoload :Sidekiq,      "devise/async/stretch/backend/sidekiq"
+        autoload :ActiveJob,      "devise/async/stretch/backend/active_job"
       end
 
       # Defines the queue backend to be used. Sidekiq by default.
