@@ -13,6 +13,14 @@ module Devise
           assert_equal Backend::Sidekiq, Backend.for(:sidekiq)
         end
 
+        test "active_job" do
+          assert_equal Backend::ActiveJob, Backend.for(:active_job)
+        end
+
+        test "delayed_job" do
+          assert_equal Backend::DelayedJob, Backend.for(:delayed_job)
+        end
+
         test "an error is thrown for unsupported backends" do
           assert_raises ArgumentError do
             Backend.for(:fakeerz)

@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "mocha", "~> 0.11"
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "sidekiq"
+  spec.add_development_dependency "delayed_job_active_record"
 end
