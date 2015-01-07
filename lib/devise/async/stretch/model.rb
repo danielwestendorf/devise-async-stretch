@@ -5,7 +5,7 @@ module Devise
 
       included do
         # Enhance the stretches!
-        after_save :enqueue_stretch_worker if Devise::Async::Stretch.enabled
+        after_commit :enqueue_stretch_worker, on: [:create, :update] if Devise::Async::Stretch.enabled
       end
 
       def self.required_fields(klass)

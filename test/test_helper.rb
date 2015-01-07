@@ -35,6 +35,8 @@ class ActiveSupport::TestCase
   setup do
     Devise::Async::Stretch.enabled = true
     Devise::Async::Stretch.backend = :sidekiq
+
+    Sidekiq::Testing.fake!
   end
 
   fixtures :users
