@@ -2,7 +2,7 @@
 
 Move password stretching into a background job for fast user creation but while maintaining difficult to crack storage.
 
-Who, why, and how? See the [website](http://devise-async-stretch.onsimplybuilt.com/).
+# Don't use this. Everything will work in development, but once you deploy to production, users will get logged out once the bg job executes.
 
 ## Contributing
 
