@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105232318) do
+ActiveRecord::Schema.define(version: 20150126144549) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150105232318) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stretch_mark"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

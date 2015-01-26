@@ -19,6 +19,11 @@ module Devise
           inject_into_file(path, ", :stretchable", :after => ":database_authenticatable") if File.exists?(path)
         end
 
+        def add_stretch_mark
+          generate "migration", "AddStretchMarkTo#{name} stretch_mark:string"
+          rake "db:migrate"
+        end
+
       end
     end
   end
