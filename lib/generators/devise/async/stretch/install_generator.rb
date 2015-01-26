@@ -24,6 +24,14 @@ module Devise
           rake "db:migrate"
         end
 
+        def populate_stretch_marks
+          name.constantize.to_adapter.find_all.each do |record|
+            if record.stretch_mark.blank?
+              record.update(stretch_mark: SecureRandom.hex(15)[0,29])
+            end
+          end
+        end
+
       end
     end
   end
