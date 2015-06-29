@@ -15,7 +15,7 @@ module Devise
             resource = klass.constantize.to_adapter.get!(id)
             encrypted_password = resource.bcrypt(password, resource.class.stretches)
 
-            resource.update(encrypted_password: encrypted_password)
+            resource.update_column(:encrypted_password, encrypted_password)
           end
 
         end

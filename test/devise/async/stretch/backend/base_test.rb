@@ -25,6 +25,7 @@ module Devise
 
           test "intermidiate encrypted_password gets set" do
             user = User.new(email: 'ed@example.com', password: 'password1')
+
             encrypted_password = user.encrypted_password
             assert_not_empty encrypted_password
 
@@ -32,6 +33,17 @@ module Devise
             Base.new.perform("User", user.id, 'password1')
 
             refute_equal encrypted_password, user.reload.encrypted_password
+          end
+
+          test "the record doesn't get touched, skipping callbacks" do
+            user = User.new(email: 'ed@example.com', password: 'password1')
+
+            user.save
+            updated_at = user.updated_at
+
+            Base.new.perform("User", user.id, 'password1')
+
+            assert_equal updated_at.to_i, user.reload.updated_at.to_i
           end
 
         end
