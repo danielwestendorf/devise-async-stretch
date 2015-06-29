@@ -12,4 +12,5 @@ end
 group :test do
   gem "codeclimate-test-reporter", require: nil
   gem "test_after_commit"
+  gem 'lumberjack'
 end
