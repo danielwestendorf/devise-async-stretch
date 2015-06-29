@@ -43,7 +43,7 @@ module Devise
 
             Base.new.perform("User", user.id, 'password1')
 
-            assert_equal updated_at, user.reload.updated_at
+            assert_equal updated_at.to_i, user.reload.updated_at.to_i
           end
 
         end
